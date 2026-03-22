@@ -14,6 +14,7 @@ const temperature = document.getElementById("temperature");
 const description = document.getElementById("description");
 const humidity = document.getElementById("humidity");
 const wind = document.getElementById("wind");
+const feelsLike = document.getElementById("feelsLike");
 
 // Step 3: Function to fetch weather data from API
 async function getWeather(city) {
@@ -59,6 +60,7 @@ function displayWeather(data) {
     description.textContent = data.weather[0].description;
     humidity.textContent = data.main.humidity;
     wind.textContent = Math.round(data.wind.speed * 3.6); // Convert m/s to km/h
+    feelsLike.textContent = Math.round(data.main.feels_like); // "Feels like" temp
 
     // Show the weather card
     weatherCard.style.display = "block";
