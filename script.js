@@ -71,7 +71,7 @@ function displayWeather(data) {
     const minutes = cityLocalTime.getMinutes().toString().padStart(2, '0');
     const ampm = hours >= 12 ? 'PM' : 'AM';
     const displayHours = hours % 12 || 12; // Convert 0 to 12 for 12-hour format
-    cityTime.textContent = `🕐 Local Time: ${displayHours}:${minutes} ${ampm}`;
+    cityTime.textContent = "\u{1F550} Local Time: " + displayHours + ":" + minutes + " " + ampm;
 
     // Show the weather card
     weatherCard.style.display = "block";
