@@ -1,0 +1,6 @@
+# Files Docker should ignore (not copy into the image)
+.git
+.github
+.gitignore
+config.example.js
+README.md
