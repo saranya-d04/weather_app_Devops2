@@ -112,6 +112,18 @@ h1 {
     margin: 4px 0;
 }
 
+/* ===== City local time ===== */
+.city-time {
+    font-size: 15px;
+    font-weight: bold;
+    color: #1e3a5f;
+    margin: 8px 0;
+    padding: 6px 12px;
+    background: #e8f4fd;
+    border-radius: 6px;
+    display: inline-block;
+}
+
 /* ===== Humidity & Wind details ===== */
 .details {
     display: flex;

@@ -15,6 +15,7 @@ const description = document.getElementById("description");
 const humidity = document.getElementById("humidity");
 const wind = document.getElementById("wind");
 const feelsLike = document.getElementById("feelsLike");
+const cityTime = document.getElementById("cityTime");
 
 // Step 3: Function to fetch weather data from API
 async function getWeather(city) {
@@ -61,6 +62,16 @@ function displayWeather(data) {
     humidity.textContent = data.main.humidity;
     wind.textContent = Math.round(data.wind.speed * 3.6); // Convert m/s to km/h
     feelsLike.textContent = Math.round(data.main.feels_like); // "Feels like" temp
+
+    // Calculate and show the city's local time
+    // API gives timezone offset in seconds from UTC
+    const utcNow = new Date().getTime() + new Date().getTimezoneOffset() * 60000;
+    const cityLocalTime = new Date(utcNow + data.timezone * 1000);
+    const hours = cityLocalTime.getHours();
+    const minutes = cityLocalTime.getMinutes().toString().padStart(2, '0');
+    const ampm = hours >= 12 ? 'PM' : 'AM';
+    const displayHours = hours % 12 || 12; // Convert 0 to 12 for 12-hour format
+    cityTime.textContent = `🕐 Local Time: ${displayHours}:${minutes} ${ampm}`;
 
     // Show the weather card
     weatherCard.style.display = "block";
