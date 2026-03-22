@@ -52,9 +52,9 @@ jobs:
         run: |
           echo 'const CONFIG = { API_KEY: "${{ secrets.WEATHER_API_KEY }}" };' > config.js
 
-      # Log in to Docker Hub
+      # Log in to Docker Hub (username is hardcoded, password from secret)
       - name: Login to Docker Hub
-        run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
+        run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "saranyad04" --password-stdin
 
       # Build the Docker image
       - name: Build Docker image
