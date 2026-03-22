@@ -1,3 +1,6 @@
+# Ignore secret config file (contains API key)
+config.js
+
 # Ignore system files
 .DS_Store
 Thumbs.db

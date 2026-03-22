@@ -1,7 +1,7 @@
 // ===== Weather App JavaScript =====
 
-// Step 1: Your OpenWeatherMap API key (get free key at https://openweathermap.org/api)
-const API_KEY = "ff3060c71269327bc59ba2a864f79bb0"; // <-- Your Default API key
+// Step 1: Get API key from config.js (keeps it secret from GitHub)
+const API_KEY = CONFIG.API_KEY;
 
 // Step 2: Get references to HTML elements
 const cityInput = document.getElementById("cityInput");

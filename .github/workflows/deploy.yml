@@ -32,7 +32,13 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      # Step 3b: Set up GitHub Pages
+      # Step 3b: Create config.js from GitHub Secret
+      # (config.js is not in the repo — we create it here using the secret)
+      - name: Create config.js with API key
+        run: |
+          echo 'const CONFIG = { API_KEY: "${{ secrets.WEATHER_API_KEY }}" };' > config.js
+
+      # Step 3c: Set up GitHub Pages
       - name: Setup Pages
         uses: actions/configure-pages@v4
 
