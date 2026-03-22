@@ -16,9 +16,31 @@ permissions:
   pages: write
   id-token: write
 
-# Step 3: Define the job
+# Step 3: Define the jobs
 jobs:
+  # ===== JOB 1: Run Tests =====
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Download our code
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      # Install Node.js
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      # Run the tests
+      - name: Run tests
+        run: npm test
+
+  # ===== JOB 2: Deploy (only runs if tests pass) =====
   deploy:
+    needs: test  # Wait for test job to pass first!
+
     # Use the GitHub Pages deployment environment
     environment:
       name: github-pages
@@ -42,13 +64,13 @@ jobs:
       - name: Setup Pages
         uses: actions/configure-pages@v4
 
-      # Step 3c: Upload our files to GitHub Pages
+      # Step 3d: Upload our files to GitHub Pages
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
           path: "."  # Upload everything in the repo
 
-      # Step 3d: Deploy to GitHub Pages
+      # Step 3e: Deploy to GitHub Pages
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
