@@ -1,0 +1,48 @@
+# ===== GitHub Actions Workflow =====
+# This pipeline automatically deploys the Weather App to GitHub Pages
+# It runs every time you push code to the main branch
+
+name: Deploy Weather App to GitHub Pages
+
+# Step 1: When should this pipeline run?
+on:
+  push:
+    branches:
+      - main  # Run when code is pushed to main branch
+
+# Step 2: Define permissions for GitHub Pages
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Step 3: Define the job
+jobs:
+  deploy:
+    # Use the GitHub Pages deployment environment
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    # Run on Ubuntu (Linux) server
+    runs-on: ubuntu-latest
+
+    steps:
+      # Step 3a: Download our code
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      # Step 3b: Set up GitHub Pages
+      - name: Setup Pages
+        uses: actions/configure-pages@v4
+
+      # Step 3c: Upload our files to GitHub Pages
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: "."  # Upload everything in the repo
+
+      # Step 3d: Deploy to GitHub Pages
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
