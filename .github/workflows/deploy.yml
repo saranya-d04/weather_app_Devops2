@@ -37,7 +37,37 @@ jobs:
       - name: Run tests
         run: npm test
 
-  # ===== JOB 2: Deploy (only runs if tests pass) =====
+  # ===== JOB 2: Build & Push Docker Image to Docker Hub =====
+  docker:
+    needs: test  # Wait for tests to pass first!
+    runs-on: ubuntu-latest
+
+    steps:
+      # Download our code
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      # Create config.js for the Docker image
+      - name: Create config.js with API key
+        run: |
+          echo 'const CONFIG = { API_KEY: "${{ secrets.WEATHER_API_KEY }}" };' > config.js
+
+      # Log in to Docker Hub
+      - name: Login to Docker Hub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+
+      # Build the Docker image
+      - name: Build Docker image
+        run: docker build -t saranyad04/weather-app:latest .
+
+      # Push the image to Docker Hub
+      - name: Push to Docker Hub
+        run: docker push saranyad04/weather-app:latest
+
+  # ===== JOB 3: Deploy to GitHub Pages (only runs if tests pass) =====
   deploy:
     needs: test  # Wait for test job to pass first!
 
