@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Weather App</title>
+    <!-- Link to our CSS file -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Main container that holds everything -->
+    <div class="container">
+
+        <!-- App title -->
+        <h1>🌤️ Weather App</h1>
+
+        <!-- Search section: input box + button -->
+        <div class="search-box">
+            <!-- User types city name here -->
+            <input type="text" id="cityInput" placeholder="Enter city name..." />
+            <!-- Button to fetch weather -->
+            <button id="searchBtn">Search</button>
+        </div>
+
+        <!-- Error message (hidden by default) -->
+        <p id="errorMsg" class="error-msg"></p>
+
+        <!-- Weather result card (hidden by default) -->
+        <div id="weatherCard" class="weather-card" style="display: none;">
+            <!-- City name -->
+            <h2 id="cityName"></h2>
+            <!-- Weather icon from API -->
+            <img id="weatherIcon" src="" alt="weather icon" />
+            <!-- Temperature -->
+            <p id="temperature" class="temp"></p>
+            <!-- Weather description (e.g., "clear sky") -->
+            <p id="description"></p>
+            <!-- Extra info: humidity and wind -->
+            <div class="details">
+                <p>💧 Humidity: <span id="humidity"></span>%</p>
+                <p>💨 Wind: <span id="wind"></span> km/h</p>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Link to our JavaScript file -->
+    <script src="script.js"></script>
+</body>
+</html>

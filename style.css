@@ -1,0 +1,127 @@
+/* ===== Reset default browser styles ===== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* ===== Page background and font ===== */
+body {
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #72b2d4, #1e3a5f);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* ===== Main container ===== */
+.container {
+    background: white;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    width: 360px;
+}
+
+/* ===== App title ===== */
+h1 {
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+/* ===== Search box (input + button) ===== */
+.search-box {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 15px;
+}
+
+/* ===== City input field ===== */
+.search-box input {
+    flex: 1;
+    padding: 10px 12px;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    font-size: 14px;
+    outline: none;
+}
+
+/* Input focus effect */
+.search-box input:focus {
+    border-color: #72b2d4;
+}
+
+/* ===== Search button ===== */
+.search-box button {
+    padding: 10px 18px;
+    background: #1e3a5f;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+/* Button hover effect */
+.search-box button:hover {
+    background: #2a5080;
+}
+
+/* ===== Error message ===== */
+.error-msg {
+    color: red;
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+
+/* ===== Weather result card ===== */
+.weather-card {
+    margin-top: 15px;
+    padding: 15px;
+    background: #f0f8ff;
+    border-radius: 10px;
+}
+
+/* City name in result */
+.weather-card h2 {
+    font-size: 22px;
+    color: #1e3a5f;
+    margin-bottom: 5px;
+}
+
+/* Weather icon */
+.weather-card img {
+    width: 80px;
+    height: 80px;
+}
+
+/* Temperature text */
+.temp {
+    font-size: 36px;
+    font-weight: bold;
+    color: #333;
+}
+
+/* Description text */
+.weather-card p {
+    font-size: 14px;
+    color: #555;
+    margin: 4px 0;
+}
+
+/* ===== Humidity & Wind details ===== */
+.details {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 12px;
+    padding-top: 12px;
+    border-top: 1px solid #ddd;
+}
+
+.details p {
+    font-size: 13px;
+    color: #444;
+}
