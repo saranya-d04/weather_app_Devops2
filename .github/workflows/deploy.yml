@@ -1,6 +1,7 @@
 # ===== GitHub Actions Workflow =====
-# This pipeline automatically deploys the Weather App to GitHub Pages
-# It runs every time you push code to the main branch
+# This pipeline:
+# - Runs tests on ALL branches (main and dev)
+# - Builds Docker & Deploys ONLY from main branch
 
 name: Deploy Weather App to GitHub Pages
 
@@ -8,7 +9,8 @@ name: Deploy Weather App to GitHub Pages
 on:
   push:
     branches:
-      - main  # Run when code is pushed to main branch
+      - main  # Run full pipeline (test + docker + deploy)
+      - dev   # Run tests only
 
 # Step 2: Define permissions for GitHub Pages
 permissions:
@@ -38,8 +40,10 @@ jobs:
         run: npm test
 
   # ===== JOB 2: Build & Push Docker Image to Docker Hub =====
+  # Only runs on MAIN branch (not on dev/feature branches)
   docker:
     needs: test  # Wait for tests to pass first!
+    if: github.ref == 'refs/heads/main'  # <-- Only on main!
     runs-on: ubuntu-latest
 
     steps:
@@ -64,9 +68,10 @@ jobs:
       - name: Push to Docker Hub
         run: docker push saranyad04/weather-app:latest
 
-  # ===== JOB 3: Deploy to GitHub Pages (only runs if tests pass) =====
+  # ===== JOB 3: Deploy to GitHub Pages (only runs from main branch) =====
   deploy:
     needs: test  # Wait for test job to pass first!
+    if: github.ref == 'refs/heads/main'  # <-- Only on main!
 
     # Use the GitHub Pages deployment environment
     environment:
